@@ -2,7 +2,7 @@
 from django.db import models
 
 class Classificacao(models.Model):
-    classificacao = models.IntegerField(max_length=3, help_text='Deve conter no máximo 3 caracteres.')
+    classificacao = models.IntegerField( help_text='Deve conter no máximo 3 caracteres.')
 
     def __unicode__(self):
         return self.classificacao

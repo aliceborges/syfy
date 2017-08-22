@@ -133,6 +133,6 @@ TEMPLATE_DIRS = (
     TEMPLATE_PATH,
 )
 
-# configuração do diretório media
+# configuracao do diretorio media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
