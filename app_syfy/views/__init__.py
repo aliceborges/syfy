@@ -1,0 +1,1 @@
+from app_syfy.views.autor import *
