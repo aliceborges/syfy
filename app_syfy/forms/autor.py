@@ -1,6 +1,6 @@
 from django.forms import *
 
-from app_syfy.models.autor import Autor
+from app_syfy.models.ator import Autor
 
 
 class AutorForm(ModelForm):

@@ -2,7 +2,7 @@
 from django.db import models
 from django.urls import reverse
 
-class Autor(models.Model):
+class Ator(models.Model):
     nome = models.CharField(max_length=250, help_text='Deve conter no máximo 250 caracteres.')
 
     def __unicode__(self):
@@ -13,5 +13,5 @@ class Autor(models.Model):
 
     class Meta:
         app_label = 'app_syfy'
-        verbose_name = 'Autor'
-        verbose_name_plural = 'Autores'
+        verbose_name = 'Ator'
+        verbose_name_plural = 'Atores'
