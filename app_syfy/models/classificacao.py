@@ -6,7 +6,7 @@ class Classificacao(models.Model):
     classificacao = models.IntegerField( help_text='Deve conter no máximo 3 caracteres.')
 
     def __unicode__(self):
-        return self.classificacao
+        return '%s' %self.classificacao
 
     def get_absolute_url(self):
         return reverse('classificacao-detail', kwargs={'pk': self.pk})

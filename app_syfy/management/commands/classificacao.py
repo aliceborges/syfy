@@ -17,11 +17,12 @@ class Command(BaseCommand):
         with open('csv/classificacao.csv') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                if not Classificacao.objects.filter(classificacao=row['classificacao']):
+                if not Classificacao.objects.filter(classificacao=row["nome"]):
                     #pages = Page(category=Category.objects.get(name=row["category"]),
+
                     classificacao = Classificacao(
                         #category=Category.objects.get_or_create(name=row["category"])[0],
-                                        classificacac=row["classificacao"],
+                                        classificacao=row["nome"],
                                       # url=row["url"],
                                       # views=row['views']
 
