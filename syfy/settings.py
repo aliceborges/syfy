@@ -127,11 +127,11 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
-# configuracao diretorio template
-TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates') # caminho relativo para a pasta template
-TEMPLATE_DIRS = (
-    TEMPLATE_PATH,
-)
+# # configuracao diretorio template
+# TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates') # caminho relativo para a pasta template
+# TEMPLATE_DIRS = (
+#     TEMPLATE_PATH,
+# )
 
 # configuracao do diretorio media
 MEDIA_URL = '/media/'

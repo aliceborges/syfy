@@ -12,5 +12,5 @@ class Usuario(User):
 
     class Meta:
         app_label = 'app_syfy'
-        verbose_name = 'Video'
-        verbose_name_plural = 'Videos'
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'

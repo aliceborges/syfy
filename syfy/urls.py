@@ -15,8 +15,28 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.shortcuts import render
+
+from syfy import settings
+from django.views.static import serve
+
+
+def handle500(request):
+    return render(request, '500.html', {})
+
+def handle404(request):
+    return render(request, '404.html', {})
+
+
+def handle403(request):
+    return render(request, '403.html', {})
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^/', include('app_syfy.urls')),
+    url(r'^media/(.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r"^", include('app_syfy.urls')),
+
+    url(r'^', handle404, name='404'),
+    url(r'^', handle403, name='403'),
+    url(r'^', handle500, name='500'),
 ]
