@@ -11,7 +11,7 @@ class GeneroListView(ListView):
 
 
 class GeneroDetailView(DetailView):
-    queryset = Genero.objects.filter(excluido=False)
+    queryset = Genero.objects.all()
 
 
 class GeneroCreateView(CreateView):
@@ -36,7 +36,7 @@ class GeneroUpdateView(UpdateView):
 
 
 class GeneroDeleteView(DeleteView):
-    queryset = Genero.objects.filter(excluido=False)
+    queryset = Genero.objects.all()
     success_url = reverse_lazy('genero-list')
 
     def form_valid(self, form):

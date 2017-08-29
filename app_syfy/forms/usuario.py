@@ -6,3 +6,4 @@ from django.contrib.auth.models import User
 class AutorForm(ModelForm):
     class Meta:
         model = User
+        fields = "__all__"

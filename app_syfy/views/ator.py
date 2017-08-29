@@ -11,7 +11,7 @@ class AtorListView(ListView):
 
 
 class AtorDetailView(DetailView):
-    queryset = Ator.objects.filter(excluido=False)
+    queryset = Ator.objects.all()
 
 
 class AtorCreateView(CreateView):
@@ -36,7 +36,7 @@ class AtorUpdateView(UpdateView):
 
 
 class AtorDeleteView(DeleteView):
-    queryset = Ator.objects.filter(excluido=False)
+    queryset = Ator.objects.all()
     success_url = reverse_lazy('ator-list')
 
     def form_valid(self, form):

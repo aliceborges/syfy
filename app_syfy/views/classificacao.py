@@ -11,7 +11,7 @@ class ClassificacaoListView(ListView):
 
 
 class ClassificacaoDetailView(DetailView):
-    queryset = Classificacao.objects.filter(excluido=False)
+    queryset = Classificacao.objects.all()
 
 
 class ClassificacaoCreateView(CreateView):
@@ -36,7 +36,7 @@ class ClassificacaoUpdateView(UpdateView):
 
 
 class ClassificacaoDeleteView(DeleteView):
-    queryset = Classificacao.objects.filter(excluido=False)
+    queryset = Classificacao.objects.all()
     success_url = reverse_lazy('classificacao-list')
 
     def form_valid(self, form):
