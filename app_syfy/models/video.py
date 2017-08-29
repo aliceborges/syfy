@@ -11,6 +11,8 @@ class Video(models.Model):
     diretor = models.ManyToManyField(Ator, help_text='Deve conter o diretor.',related_name="diretor")
     genero = models.ManyToManyField(Genero, help_text='Deve conter o genero.',related_name="genero")
     classificacao = models.ManyToManyField(Classificacao, help_text='Deve conter a classificacao indicativa do filme.',related_name="classificacao_indicativa")
+    arquvio = models.FileField(help_text='Deve conter o arquivo de vídeo.',upload_to="upload/video" )
+    imagem = models.ImageField(help_text='Deve conter a imagem do vídeo',upload_to="upload/imagem")
 
     def __unicode__(self):
         return self.titulo
