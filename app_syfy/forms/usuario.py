@@ -1,8 +1,8 @@
 from django.forms import *
 
-from app_syfy.models.ator import Autor
+from django.contrib.auth.models import User
 
 
 class AutorForm(ModelForm):
     class Meta:
-        model = Autor
+        model = User
