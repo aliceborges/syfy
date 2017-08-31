@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
+from django.contrib.auth import views as auth_views
 from syfy import settings
 from django.views.static import serve
 
@@ -33,6 +35,9 @@ def handle403(request):
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # url(r'^login/$', login, {'template_name': 'index.html'}, name='login'),
+    url(r'^login/$', auth_views.LoginView.as_view(template_name='app_syfy/index.html'), name='login'),
+    url(r'^logout/$', login_required(logout), name='logout'),
     url(r'^media/(.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r"^", include('app_syfy.urls')),
 
