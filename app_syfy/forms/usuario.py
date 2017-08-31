@@ -1,9 +1,10 @@
 from django.forms import *
 
 from django.contrib.auth.models import User
+from app_syfy.models.usuario import Usuario
 
-
-class AutorForm(ModelForm):
+class UsuarioForm(ModelForm):
     class Meta:
-        model = User
-        fields = "__all__"
+        model = Usuario
+        #fields = "__all__"
+        exclude =('favorito',)
