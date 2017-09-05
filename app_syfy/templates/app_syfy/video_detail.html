@@ -14,7 +14,11 @@
                     <div class="col-md-12 bg-inverse">
                       <div class="embed-responsive embed-responsive-4by3">
                         <iframe class="embed-responsive-item" src="/media/{{ object.arquivo }}" allowfullscreen=""> </iframe>
+{#                        <video class="embed-responsive-item" src="/media/{{ object.arquivo }}" allowfullscreen=""> </video>#}
+                         <video  controls>
+                          <source src="/media/{{ object.arquivo }}" type="video/mp4">
 
+                        </video>
                       </div>
                     </div>
                   </div>
