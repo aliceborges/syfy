@@ -18,8 +18,8 @@
           {% for video in object_list %}
 
         <div class="col-md-3">
-          <img class="img-fluid d-block" src="{{ video.imagem }}">
-            <label>{{ video.titulo }}</label>
+          <img class="img-fluid d-block" src="/media/{{ video.imagem }}">
+            <a href="{% url 'video-detail' video.id %}" >{{ video.titulo }}</a>
         </div>
 
           {% endfor %}
