@@ -21,17 +21,17 @@ class VideoCreateView(CreateView):
     model = Video
     form_class = VideoForm
 
-    def form_valid(self, form):
-        self.object = Video(arquivo=self.get_form_kwargs().get('files')['arquivo'])
-        self.object = form.save(commit=False)
-        self.object.save()
+    # def form_valid(self, form):
+    #     self.object = Video(arquivo=self.get_form_kwargs().get('files')['arquivo'])
+        # self.object = form.save(commit=False)
+        # self.object.save()
         # return super(VideoCreateView, self).form_valid(form)
-        self.id = self.object.id
+        # self.id = self.object.id
 
-        return HttpResponseRedirect(self.get_success_url())
+        # return HttpResponseRedirect(self.get_success_url())
 
-    def get_success_url(self):
-        return reverse('video-detail', kwargs={'pk': self.id})
+    # def get_success_url(self):
+    #     return reverse('video-detail', kwargs={'pk': 1})
 
 
 class VideoUpdateView(UpdateView):

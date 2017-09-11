@@ -1,217 +1,216 @@
-
 {% extends 'app_syfy/base.html' %}
 {% load staticfiles %}
 {% block title %}Home{% endblock %}
 {% block main %}
-  {% if not user.is_authenticated %}
-      <div class="bg-primary text-center d-flex h-100 align-items-center" style="background-image: url(&quot;https://guiadanetflix.com.br/wp-content/uploads/2017/08/the-flash-curiosidades.jpg&quot;);">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 bg-faded p-3">
-              <form class="" method="POST" action="{% url 'login' %}">
-               {% csrf_token %}
-                <h3 class="" contenteditable="true">Login</h3>
-                <div class="form-group text-left"> <label class="text-left">Email</label>
-                  <input type="text" name="username" class="form-control" placeholder="Enter email"> </div>
-                <div class="form-group text-left"> <label class="text-left">Senha</label>
-                  <input type="password" name="password" class="form-control" placeholder="Password"> </div>
-                <button type="submit" class="btn btn-primary w-25">Entrar</button>
-              </form>
+    {% if not user.is_authenticated %}
+        <div class="bg-primary text-center d-flex h-100 align-items-center"
+             style="background-image: url(&quot;https://guiadanetflix.com.br/wp-content/uploads/2017/08/the-flash-curiosidades.jpg&quot;);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 bg-faded p-3">
+                        <form class="" method="POST" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <h3 class="" contenteditable="true">Login</h3>
+                            <div class="form-group text-left"><label class="text-left">Email</label>
+                                <input type="text" name="username" class="form-control" placeholder="Enter email"></div>
+                            <div class="form-group text-left"><label class="text-left">Senha</label>
+                                <input type="password" name="password" class="form-control" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-25">Entrar</button>
+                        </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
             </div>
-            <div class="col-md-2"></div>
-          </div>
         </div>
-      </div>
     {% else %}
 
-  <div class="bg-primary text-center d-flex align-items-center h-50">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="display-1 text-white">SyFy</h1>
-          <p class="lead text-white">Imagine mais!
-            <br> </p>
+        <div class="bg-primary text-center d-flex align-items-center h-50 header ">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        {#            <img class="img-fluid" src="/static/image/dragon-ball-z-banner1.jpg"> </div>#}
+                        {#          <p class="lead text-white">#}
+                        <img class="imagem-logo" src="/static/image/syfy.png"></div>
+                    {#          </p>#}
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-4">
-              <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-12">
-                  <h1 class="">Título</h1>
-                </div>
-                <div class="col-md-12">
-                  <p class="">Autores</p>
-                </div>
-                <div class="col-md-12">
-                  <p class="lead">Sinopse</p>
-                </div>
-                <div class="col-md-12">
-                  <p class="">Classificação</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="text-center m-3">Ação</h2>
-        </div>
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
+        {% if video %}
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {#                                <img class="img-fluid d-block w-100" src="/static/image/dragon-ball-z-banner1.jpg">#}
+                                    <img class="img-fluid d-block w-100" src="/media/{{ video.imagem }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="{% url 'video-detail' video.id %}"><h1
+                                                    class="">{{ video.titulo }}</h1></a>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="">
+                                                {#                                            {{ video.ator.all }}#}
+                                                {{ video.elenco.all|join:",  " }}</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="lead">{{ video.descricao }}</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="">Classificação: {% if video.classificacao.classificacao == 0 %}
+                                                Livre
+                                            {% else %}
+                                                {{ video.classificacao }} Anos
+                                            {% endif %}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="text-center m-3">Ação</h2>
-        </div>
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="text-center m-3">Ação</h2>
-        </div>
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="row">
-                <div class="col-md-12">
-                  <img class="img-fluid d-block w-100" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"> </div>
-                <div class="col-md-12">
-                  <p class="lead m-2">Classificação</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        {% endif %}
 
+        {% if videos_genero.acao %}
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center m-3">Ação</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% for acao in videos_genero.acao.all %}
+
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href={% url 'video-detail' acao.id %}> <img
+                                                        class="imagem-thumbnail img-fluid d-block w-100"
+                                                        src="/media/{{ acao.imagem }}"></a></div>
+                                            <div class="col-md-12">
+                                                <p class="lead m-2">Classificação:
+                                                    {% if acao.classificacao.classificacao == 0 %}
+                                                        Livre
+                                                    {% else %}
+                                                        {{ acao.classificacao }} Anos
+                                                    {% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if  videos_genero.animacao %}
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center m-3">Animação</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% for animacao in videos_genero.animacao.all %}
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href={% url 'video-detail' animacao.id %}> <img
+                                                        class="imagem-thumbnail img-fluid d-block w-100"
+                                                        src="/media/{{ animacao.imagem }}"></a></div>
+                                            <div class="col-md-12">
+                                                <p class="lead m-2">Classificação:
+                                                    {% if animacao.classificacao.classificacao == 0 %}
+                                                        Livre
+                                                    {% else %}
+                                                        {{ animacao.classificacao }} Anos
+                                                    {% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if  videos_genero.drama %}
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center m-3">Drama</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% for drama in videos_genero.drama.all %}
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href={% url 'video-detail' drama.id %}> <img
+                                                        class="imagem-thumbnail img-fluid d-block w-100"
+                                                        src="/media/{{ drama.imagem }}"></a></div>
+                                            <div class="col-md-12">
+                                                <p class="lead m-2">Classificação:
+                                                    {% if drama.classificacao.classificacao == 0 %}
+                                                        Livre
+                                                    {% else %}
+                                                        {{ drama.classificacao }} Anos
+                                                    {% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if  videos_genero.ficcao %}
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="text-center m-3">Ficção Científica</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% for ficcao in videos_genero.ficcao.all %}
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href={% url 'video-detail' ficcao.id %}> <img
+                                                        class="imagem-thumbnail img-fluid d-block w-100"
+                                                        src="/media/{{ ficcao.imagem }}"></a></div>
+                                            <div class="col-md-12">
+                                                <p class="lead m-2">Classificação:
+                                                    {% if ficcao.classificacao.classificacao == 0 %}
+                                                        Livre
+                                                    {% else %}
+                                                        {{ ficcao.classificacao }} Anos
+                                                    {% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            {% endif %}
 
     {% endif %}
 {% endblock %}

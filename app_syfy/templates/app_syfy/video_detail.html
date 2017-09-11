@@ -39,13 +39,14 @@
               </div>
               <div class="col-md-12">
                 <h4> {{ object.titulo }} </h4>
-                <p class="lead">Diretor: {% for diretor in object.diretor.all %}{{ diretor.nome }}{% endfor %}</p>
-                <p class="lead">Atores: {% for ator in object.elenco.all %}{{ ator.nome }}{% endfor %}</p>
+                <p class="lead">Diretor: {{ object.diretor.all|join:",  " }}</p>
+                <p class="lead">Atores: {{ object.elenco.all|join:",  " }}</p>
 {#                <p class="lead">Produtor: {% for produtor in object.elenco.all %}{{ ator.nome }}{% endfor %}</p>#}
                 <p class="lead">Sinopse: {{ object.descricao }}</p>
-                <p class="lead">Duração: {{ object.duracao }}</p>
-                <p class="lead">Classificação indicativa: {% for classificacao in object.classificacao.all %}{{ classificacao.classificacao }}{% endfor %}</p>
-                <p class="lead">Gênero: {% for genero in object.genero.all %}{{ genero.nome }}{% endfor %}</p>
+                <p class="lead">Duração: {{ object.duracao |date:"H : i "}} h </p>
+                <p class="lead">Classificação indicativa: {% if object.classificacao.classificacao == 0 %}Livre{% else %}
+                                                {{ object.classificacao }}{% endif %}</p>
+                <p class="lead">Gênero:{{ video.genero.all|join:",  " }} </p>
               </div>
             </div>
           </div>

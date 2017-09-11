@@ -18,13 +18,14 @@ class Command(BaseCommand):
     def _create_genero(self):
         with open('csv/genero.csv') as csvfile:
             reader = csv.DictReader(csvfile)
-            for row in reader:
-                if not Genero.objects.filter(nome=row['nome']):
-                    genero = Genero(
+            for i,row in enumerate(reader):
+                # if not Genero.objects.filter(nome=row['nome']):
+                    genero = Genero(    id=i+1,
                                         nome=row["nome"],
 
                                         )
                     genero.save()
+                    print(i+1,row["nome"])
 
 
 
