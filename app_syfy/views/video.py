@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from django.http import HttpResponseRedirect, Http404, request
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from django.urls import reverse_lazy
 from django.views.generic import *
 
@@ -19,9 +22,16 @@ class VideoCreateView(CreateView):
     form_class = VideoForm
 
     def form_valid(self, form):
+        self.object = Video(arquivo=self.get_form_kwargs().get('files')['arquivo'])
         self.object = form.save(commit=False)
         self.object.save()
-        return super(VideoCreateView, self).form_valid(form)
+        # return super(VideoCreateView, self).form_valid(form)
+        self.id = self.object.id
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('video-detail', kwargs={'pk': self.id})
 
 
 class VideoUpdateView(UpdateView):
@@ -43,3 +53,4 @@ class VideoDeleteView(DeleteView):
         self.object = form.save(commit=False)
         self.object.save()
         return super(VideoDeleteView, self).form_valid(form)
+

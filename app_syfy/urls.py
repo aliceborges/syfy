@@ -1,6 +1,8 @@
 # coding=utf-8
 from __future__ import unicode_literals
 from django.conf.urls import include, url
+
+from app_syfy import views
 from app_syfy.views import *
 from django.views.generic.base import TemplateView
 
