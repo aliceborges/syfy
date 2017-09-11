@@ -1,6 +1,6 @@
 {% extends 'app_syfy/base.html' %}
 {% load staticfiles %}
-{#{% load bootstrap %}#}
+{% load bootstrap %}
 {% block title %}Home{% endblock %}
 {% block main %}
 
@@ -13,8 +13,7 @@
 
           <form class="w-100" role="form" method="post" action="{% url 'video-add' %}" enctype="multipart/form-data">
               {% csrf_token %}
-{##}
-{#              {{ form|bootstrap }}#}
+              {{ form|bootstrap }}
 {#              <div class="col-md-12">#}
 {#                <h3>Cadastro de Filme</h3>#}
 {#              </div>#}
@@ -33,17 +32,20 @@
 {#                  <fieldset class="form-group">#}
 {#                      {{ form.duracao|bootstrap}}#}
 {#                  </fieldset>#}
+{#                    <fieldset class="form-group">#}
 {#                      {{ form.arquivo|bootstrap}}#}
+{#                    </fieldset>#}
 {#                </div>#}
 {#                <div class="col-md-6">#}
 {#                  <fieldset class="form-group">#}
 {#                      {{ form.imagem|bootstrap}}#}
+{#                  </fieldset>#}
 {#                  <fieldset class="form-group">#}
 {#                        {{ form.classificacao|bootstrap}}#}
 {#                  </fieldset>#}
 {#                </div>#}
 {#              </div>#}
-              <button type="submit" class="btn btn-primary">Continuar</button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
           </form>
         </div>
         <div class="col-md-2"></div>
