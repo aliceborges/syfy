@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.urls import reverse_lazy
 from django.views.generic import *
 
+from app_syfy.models import Genero
 from app_syfy.models.video import Video
 from app_syfy.forms.video import VideoForm
 
@@ -12,7 +13,19 @@ from app_syfy.forms.video import VideoForm
 class VideoListView(ListView):
     queryset = Video.objects.all()
 
+class VideoGeneroListView(ListView):
+    queryset = Video.objects.all()
+    paginate_by = 10
+    # template_name = "app_syfy/video_list.html"
 
+    def get_queryset(self):
+            print(self.request.user.id)
+            queryset = Video.objects.filter(genero__pk=self.kwargs['pk'])
+            return queryset
+    def get_context_data(self, **kwargs):
+        context = super(VideoGeneroListView, self).get_context_data(**kwargs)
+        context['genero'] = Genero.objects.get(pk=self.kwargs['pk'])
+        return context
 class VideoDetailView(DetailView):
     queryset = Video.objects.all()
 

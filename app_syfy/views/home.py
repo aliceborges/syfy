@@ -11,14 +11,12 @@ class HomeViews(View):
           videos_genero={}
           videos=Video.objects.all()
           try:
-              videos_genero["acao"]=videos.filter(genero__pk=1)[:3]
-              videos_genero["animacao"]=videos.filter(genero__pk=2)[:3]
-              videos_genero["drama"]=videos.filter(genero__pk=12)[:3]
-              videos_genero["ficcao"]=videos.filter(genero__pk=16)[:3]
-
+              videos_genero["acao"]=videos.filter(genero__pk=1)[:4]
+              videos_genero["animacao"]=videos.filter(genero__pk=2)[:4]
+              videos_genero["drama"]=videos.filter(genero__pk=12)[:4]
+              videos_genero["ficcao"]=videos.filter(genero__pk=16)[:4]
               video=videos.order_by('-id')[0]
           except:
               video=""
-          print(videos_genero)
+          #print(videos_genero)
           return render(request,self.template,{"videos_genero":videos_genero,'video':video})
-

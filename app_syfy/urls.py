@@ -37,7 +37,8 @@ urlpatterns = [
     url(r'^video/(?P<pk>[0-9]+)/editar/$', VideoUpdateView.as_view(), name='video-update'),
     url(r'^video/(?P<pk>[0-9]+)/excluir/$', VideoDeleteView.as_view(), name='video-delete'),
     url(r'^video/listar/$', VideoListView.as_view(), name='video-list'),
-    
+    url(r'^video/listar/(?P<pk>[0-9]+)/$', VideoGeneroListView.as_view(), name='video-genero-list'),
+
     # ---- Usuario ----#
     url(r'^usuario/cadastrar/$', UsuarioCreateView.as_view(), name='usuario-add'),
     url(r'^usuario/(?P<pk>[0-9]+)/visualizar/$', UsuarioDetailView.as_view(), name='usuario-detail'),
