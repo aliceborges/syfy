@@ -12,6 +12,7 @@ class Video(models.Model):
     genero = models.ManyToManyField(Genero, help_text='Deve conter o genero.',related_name="genero")
     classificacao = models.ForeignKey(Classificacao, help_text='Deve conter a classificacao indicativa do filme.',related_name="classificacao_indicativa")
     arquivo = models.FileField(help_text='Deve conter o arquivo de vídeo.',upload_to="upload/video" )
+    youtube = models.URLField(max_length=200,help_text='Deve conter o arquivo de vídeo.' )
     imagem = models.ImageField(help_text='Deve conter a imagem do vídeo',upload_to="upload/imagem")
     duracao = models.TimeField()
 
