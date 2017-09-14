@@ -7,4 +7,4 @@ class UsuarioForm(ModelForm):
     class Meta:
         model = Usuario
         #fields = "__all__"
-        exclude =('favorito',)
+        exclude =('favorito', 'last_login', 'is_superuser', 'groups', 'user_permissions', 'is_staff', 'is_active', 'date_joined')
