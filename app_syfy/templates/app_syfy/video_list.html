@@ -7,7 +7,7 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="mx-5 display-6 bg-faded">{{ genero }}</h2>
+          <h2 class="mx-5 display-6 bg-faded">{% if pesquisa %}Você pesquisou por: {{ pesquisa }} {% else %}{{ genero }}{% endif %}</h2>
         </div>
       </div>
     </div>

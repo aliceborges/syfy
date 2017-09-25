@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^video/(?P<pk>[0-9]+)/visualizar/$', VideoDetailView.as_view(), name='video-detail'),
     url(r'^video/(?P<pk>[0-9]+)/editar/$', VideoUpdateView.as_view(), name='video-update'),
     url(r'^video/(?P<pk>[0-9]+)/excluir/$', VideoDeleteView.as_view(), name='video-delete'),
-    url(r'^video/listar/$', VideoListView.as_view(), name='video-list'),
+     url(r'^video/listar/$', VideoListView.as_view(), name='video-list'),
     url(r'^video/listar/(?P<pk>[0-9]+)/$', VideoGeneroListView.as_view(), name='video-genero-list'),
 
     # ---- Usuario ----#
@@ -46,6 +46,8 @@ urlpatterns = [
     url(r'^usuario/editar/$', UsuarioUpdateView.as_view(), name='usuario-update'),
     # url(r'^login/$', login, {'template_name': 'index.html'}, name='login'),
 
+    url(r'^video/busca/$', VideoListBuscaView.as_view(), name='busca'),
+    #
     # url(r'^cadastro/$', TemplateView(template_name='usuario_form.html')),
 
     
