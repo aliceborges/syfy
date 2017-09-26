@@ -12,6 +12,10 @@ class UsuarioListView(ListView):
 
 class UsuarioDetailView(DetailView):
     queryset = Usuario.objects.all()
+    # def get_context_data(self, **kwargs):
+    #     context = super(UsuarioDetailView, self).get_context_data(**kwargs)
+    #     context['favoritos'] = Usuario.objects.all().favoritos
+    #     return context
 
 
 class UsuarioCreateView(CreateView):

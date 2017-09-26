@@ -46,22 +46,43 @@
                         </div>
                     </div>
                 </li>
-{#                <li class="nav-item">#}
-{#                    <a class="nav-link" href="#">Minha Conta</a>#}
-{#                </li>#}
+
+
+
             </ul>
 
             <form class="form-inline my-2 my-lg-0" action="{% url 'busca' %}" method="POST">{% csrf_token %}
                 <input class="form-control mr-sm-2" type="text" name="name" placeholder="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+
         </div>
     </div>
+        <ul class="navbar-nav mr-auto teste">
+                 <li class="nav-item">
+                    {% if user %}
+                         <div class="btn-group">
+                        <button class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown"> Ações do Usuário</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'usuario-detail' user.id %}">Perfil</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Sair</a>
+
+
+                        </div>
+                    </div>
+{#                    <a class="nav-link" href="{% url 'usuario-detail' user.id %}">Minha Conta</a>#}
+                    {% else %}
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    {% endif %}
+                </li>
+                </ul>
     <a class="nav-link mx-auto" href="#"> </a>
 </nav>
 
 
 {% block main %}{% endblock %}
+ </div>
 <div class="py-5 text-center bg-inverse">
     <div class="container">
       <div class="row">

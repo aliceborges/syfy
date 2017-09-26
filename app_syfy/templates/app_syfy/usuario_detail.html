@@ -15,20 +15,114 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 class="text-center">Detalhes do Usuário</h3>
+                                <h2 class="mx-5 display-6 bg-faded text-center m-3 ">Detalhes do Usuário </h2>
+{#                                <h3 class="text-center">Detalhes do Usuário</h3>#}
                             </div>
-                            <div class="col-md-12">
-                                <p class="lead">Nome: {{ object.first_name}} {{object.last_name }}</p>
-                                <p class="lead">E-mail: {{ object.email }}</p>
-                                <p class="lead">Usuário: {{ object.username }}</p>
+                            <div class=" container col-md-6">
+                                <table class="table align-content-center" >
+                                    <tr><td>Nome:</td><td>{{ object.first_name}} {{object.last_name }}</td></tr>
+                                    <tr><td>E-mail:</td> <td>{{ object.email }}</td></tr>
+                                    <tr><td>Usuário:</td><td>{{ object.username }}</td></tr>
+                                </table>
+{#                                <p class="lead">Nome: {{ object.first_name}} {{object.last_name }}</p>#}
+{#                                <p class="lead">E-mail: {{ object.email }}</p>#}
+{#                                <p class="lead">Usuário: {{ object.username }}</p>#}
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                     {% if usuario.favorito.all %}
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+          <h2 class="mx-5 display-6 bg-faded text-center m-3 ">Favoritos</h2>
+
+{#                            <h2 class="text-center m-3">Ação</h2>#}
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                {% for video in usuario.favorito.all %}
+
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <a href={% url 'video-detail' video.id %}> <img
+                                                        class="imagem-thumbnail img-fluid d-block w-100"
+                                                        src="/media/{{ video.imagem }}"></a></div>
+                                            <div class="col-md-12">
+                                                <p class="lead m-2">Classificação:
+                                                    {% if video.classificacao.classificacao == 0 %}
+                                                        Livre
+                                                    {% else %}
+                                                        {{ video.classificacao }} Anos
+                                                    {% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        {% endif %}
+{#                        {% if usuario.favorito.all %}#}
+{#                            {%  for video  in  usuario.favorito.all %}#}
+{#            <div class="py-5">#}
+{#                <div class="container">#}
+{#                    <div class="row">#}
+{##}
+{##}
+{#                       <div class="col-md-12">#}
+{#                            <div class="row">#}
+{#                                <div class="col-md-4">#}
+                                    {#                                <img class="img-fluid d-block w-100" src="/static/image/dragon-ball-z-banner1.jpg">#}
+{#                                    <img class="img-fluid d-block w-100" src="/media/{{ video.imagem }}">#}
+{#                                </div>#}
+{#                                <div class="col-md-8">#}
+{#                                    <div class="row">#}
+{#                                        <div class="col-md-12">#}
+{#                                            <a href="{% url 'video-detail' video.id %}"><h1#}
+{#                                                    class="">{{ video.titulo }}</h1></a>#}
+{#                                        </div>#}
+{#                                        <div class="col-md-12">#}
+{#                                            <p class="">#}
+                                                {#                                            {{ video.ator.all }}#}
+{#                                                {{ video.elenco.all|join:",  " }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-md-12">#}
+{#                                            <p class="lead">{{ video.descricao }}</p>#}
+{#                                        </div>#}
+{#                                        <div class="col-md-12">#}
+{#                                            <p class="">Classificação: {% if video.classificacao.classificacao == 0 %}#}
+{#                                                Livre#}
+{#                                            {% else %}#}
+{#                                                {{ video.classificacao }} Anos#}
+{#                                            {% endif %}</p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#                            {% endfor %}#}
+{#        {% endif %}#}
+                </div>
+            </div>
         </div>
     </div>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 {% endblock %}
