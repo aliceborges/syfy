@@ -60,7 +60,7 @@
     </div>
         <ul class="navbar-nav mr-auto teste">
                  <li class="nav-item">
-                    {% if user %}
+                    {% if user.is_authenticated %}
                          <div class="btn-group">
                         <button class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown"> Ações do Usuário</button>
                         <div class="dropdown-menu">
