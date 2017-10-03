@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^login/$', login, {'template_name': 'index.html'}, name='login'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='app_syfy/index.html'), name='login'),
-    url(r'^logout/$', login_required(auth_views.LoginView.as_view(template_name='app_syfy/index.html')), name='logout'),
+    url(r'^logout/$', login_required(auth_views.LogoutView.as_view(template_name='app_syfy/index.html')), name='logout'),
     url(r'^media/(.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r"^", include('app_syfy.urls')),
 
