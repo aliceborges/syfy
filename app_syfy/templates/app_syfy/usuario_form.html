@@ -36,7 +36,10 @@
 {#                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="(00) 0 0000-0000"> </fieldset>#}
 {#                  <div class="form-group"> <label>Senha</label>#}
 {#                    <input type="email" class="form-control" placeholder="Digite a senha"> </div>#}
-                  <button type="submit" class="btn btn-primary text-center">Continuar</button>
+              <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary text-center">Voltar</a>
+
+              <button type="submit" class="btn btn-success text-center float-right">Salvar</button>
+              <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger text-center float-right">Cancelar</a>
                 </div>
               </div>
             </div>
