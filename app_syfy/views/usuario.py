@@ -25,6 +25,7 @@ class UsuarioCreateView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.set_password(self.object.password)
         self.object.email = self.object.username
         self.object.save()
         return super(UsuarioCreateView, self).form_valid(form)
