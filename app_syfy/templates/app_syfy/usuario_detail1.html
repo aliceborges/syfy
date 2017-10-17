@@ -19,7 +19,10 @@
                   <input type="password" name="password" class="form-control" value="{{ object.email }}"> </div>
                 <div class="form-group"> <label>Usuário</label>
                   <input type="password" name="password" class="form-control" value="{{ object.username }}"> </div>
-                <button type="submit" class="btn btn-primary text-justify">Salvar</button>
+
+                  <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary text-center">Voltar</a>
+                  <button type="submit" class="btn btn-success float-right text-justify">Salvar</button>
+                  <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger text-center float-right">Cancelar</a>
               </form>
             </div>
           </div>

@@ -45,7 +45,10 @@
 {#                  </fieldset>#}
 {#                </div>#}
 {#              </div>#}
-              <button type="submit" class="btn btn-primary">Salvar</button>
+
+              <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary text-center">Voltar</a>
+              <button type="submit" class="btn btn-success float-right text-justify">Salvar</button>
+              <a href="{% url 'home'%}" class="btn btn-danger text-center float-right">Cancelar</a>
           </form>
         </div>
         <div class="col-md-2"></div>
