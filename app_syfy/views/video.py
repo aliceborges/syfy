@@ -9,6 +9,7 @@ from app_syfy.models import Genero
 from app_syfy.models.video import Video
 from app_syfy.forms.video import VideoForm
 from django.db.models import Q
+from django.contrib.messages.views import SuccessMessageMixin
 
 class VideoListView(ListView):
     paginate_by = 10
@@ -62,21 +63,28 @@ class VideoDetailView(DetailView):
     queryset = Video.objects.all()
 
 
-class VideoCreateView(CreateView):
+class VideoCreateView(SuccessMessageMixin, CreateView):
     model = Video
     form_class = VideoForm
 
-    # def form_valid(self, form):
-    #     self.object = Video(arquivo=self.get_form_kwargs().get('files')['arquivo'])
-        # self.object = form.save(commit=False)
-        # self.object.save()
-        # return super(VideoCreateView, self).form_valid(form)
+    success_message = "Vídeo cadastrado com sucesso! "
+
+    def form_valid(self, form):
+        # self.object = Video(arquivo=self.get_form_kwargs().get('files')['arquivo'])
+        self.object = form.save(commit=False)
+        self.object.save()
+        return super(VideoCreateView, self).form_valid(form)
         # self.id = self.object.id
 
         # return HttpResponseRedirect(self.get_success_url())
 
     # def get_success_url(self):
     #     return reverse('video-detail', kwargs={'pk': 1})
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data
+    )
 
 
 class VideoUpdateView(UpdateView):

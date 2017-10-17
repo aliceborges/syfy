@@ -3,7 +3,21 @@
 {% block title %}Visualizar Vídeo{% endblock %}
 {% block main %}
 
+
+
+
         <div class="container">
+            {% if messages %}
+                <div class="row">
+                    {% for message in messages %}
+                        <div{% if message.tags %} class="alert alert-success" id="mensagem" {% endif %}>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                            <strong>{{ message }}!</strong>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
             <div class="row">
                 <div class="col-md-12 bg-inverse">
                     <div class="py-5 text-center bg-inverse">
