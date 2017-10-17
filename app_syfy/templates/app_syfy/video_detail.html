@@ -93,9 +93,8 @@
                                             {{ object.titulo }}</h3>
                                         <div class="embed-responsive embed-responsive-4by3">
                                             {% if object.youtube %}
-
                                                 <iframe width="560" height="315"
-                                                        src="cc{{ object.youtube }}"
+                                                        src="https://www.youtube.com/embed/{{ object.youtube }}"
                                                         frameborder="0" allowfullscree ></iframe>
                                             {% elif object.arquivo or object.arquivogv %}
 
