@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import *
 
@@ -10,7 +11,7 @@ class UsuarioListView(ListView):
     queryset = Usuario.objects.all()
 
 
-class UsuarioDetailView(DetailView):
+class UsuarioDetailView( DetailView):
     queryset = Usuario.objects.all()
     # def get_context_data(self, **kwargs):
     #     context = super(UsuarioDetailView, self).get_context_data(**kwargs)
@@ -18,9 +19,10 @@ class UsuarioDetailView(DetailView):
     #     return context
 
 
-class UsuarioCreateView(CreateView):
+class UsuarioCreateView(SuccessMessageMixin,CreateView):
     model = Usuario
     form_class = UsuarioForm
+    success_message = "Usuário cadastrado com sucesso! "
 
 
     def form_valid(self, form):
@@ -29,6 +31,11 @@ class UsuarioCreateView(CreateView):
         self.object.email = self.object.username
         self.object.save()
         return super(UsuarioCreateView, self).form_valid(form)
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(
+            cleaned_data
+    )
 
 
 class UsuarioUpdateView(UpdateView):
