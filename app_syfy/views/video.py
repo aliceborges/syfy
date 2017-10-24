@@ -59,6 +59,7 @@ class VideoGeneroListView(ListView):
         context = super(VideoGeneroListView, self).get_context_data(**kwargs)
         context['genero'] = Genero.objects.get(pk=self.kwargs['pk'])
         return context
+
 class VideoDetailView(DetailView):
     queryset = Video.objects.all()
 
