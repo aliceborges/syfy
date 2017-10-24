@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import *
 
@@ -12,10 +13,18 @@ class UsuarioListView(ListView):
 
 class UsuarioDetailView(DetailView):
     queryset = Usuario.objects.all()
+    template_name = 'app_syfy/usuario_detail.html'
     # def get_context_data(self, **kwargs):
     #     context = super(UsuarioDetailView, self).get_context_data(**kwargs)
     #     context['favoritos'] = Usuario.objects.all().favoritos
     #     return context
+    def get_queryset(self):
+        try:
+            queryset= Usuario.objects.get(id=self.kwargs["id"])
+        except:
+            queryset= User.objects.all()
+
+        return queryset
 
 
 class UsuarioCreateView(CreateView):
