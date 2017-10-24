@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import *
-
+from django.contrib.messages.views import SuccessMessageMixin
 from app_syfy.models.usuario import Usuario
 from app_syfy.forms.usuario import UsuarioForm
 
