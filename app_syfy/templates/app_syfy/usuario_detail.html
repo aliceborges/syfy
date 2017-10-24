@@ -2,11 +2,23 @@
 {% load staticfiles %}
 {% block title %}Detalhes do Usuario{% endblock %}
 {% block main %}
+
     <div class="py-5">
-        <div class="container">
+    <div class="container">
+        {% if messages %}
             <div class="row">
-                <div class="col-md-12 bg-inverse">
-                    <div class="py-5 text-center bg-inverse">
+                {% for message in messages %}
+                    <div{% if message.tags %} class="alert alert-success" id="mensagem" {% endif %}>
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        <strong>{{ message }}!</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12 bg-inverse">
+                <div class="py-5 text-center bg-inverse">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12"></div>
@@ -16,7 +28,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2 class="mx-5 display-6 bg-faded text-center m-3 ">Detalhes do Usuário </h2>
-{#                                <h3 class="text-center">Detalhes do Usuário</h3>#}
+                                {#                                <h3 class="text-center">Detalhes do Usuário</h3>#}
                             </div>
                             <div class=" container col-md-6">
                                 <table class="table align-content-center" >
@@ -24,9 +36,9 @@
                                     <tr><td>E-mail:</td> <td>{{ object.email }}</td></tr>
                                     <tr><td>Usuário:</td><td>{{ object.username }}</td></tr>
                                 </table>
-{#                                <p class="lead">Nome: {{ object.first_name}} {{object.last_name }}</p>#}
-{#                                <p class="lead">E-mail: {{ object.email }}</p>#}
-{#                                <p class="lead">Usuário: {{ object.username }}</p>#}
+                                {#                                <p class="lead">Nome: {{ object.first_name}} {{object.last_name }}</p>#}
+                                {#                                <p class="lead">E-mail: {{ object.email }}</p>#}
+                                {#                                <p class="lead">Usuário: {{ object.username }}</p>#}
                             </div>
                         </div>
                     </div>
@@ -38,87 +50,90 @@
 
 
 
-                     {% if usuario.favorito.all %}
-            <div class="py-5">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
+                    {% if usuario.favorito.all %}
+                        <div class="py-5">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
 
-          <h2 class="mx-5 display-6 bg-faded text-center m-3 ">Favoritos</h2>
+                                        <h2 class="mx-5 display-6 bg-faded text-center m-3 ">Favoritos</h2>
 
-{#                            <h2 class="text-center m-3">Ação</h2>#}
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                {% for video in usuario.favorito.all %}
-
-                                    <div class="col-md-3">
+                                        {#                            <h2 class="text-center m-3">Ação</h2>#}
+                                    </div>
+                                    <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <a href={% url 'video-detail' video.id %}> <img
-                                                        class="imagem-thumbnail img-fluid d-block w-100"
-                                                        src="/media/{{ video.imagem }}"></a></div>
-                                            <div class="col-md-12">
-                                                <p class="lead m-2">Classificação:
-                                                    {% if video.classificacao.classificacao == 0 %}
-                                                        Livre
-                                                    {% else %}
-                                                        {{ video.classificacao }} Anos
-                                                    {% endif %}</p>
-                                            </div>
+                                            {% for video in usuario.favorito.all %}
+
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <a href={% url 'video-detail' video.id %}> <img
+                                                                    class="imagem-thumbnail img-fluid d-block w-100"
+                                                                    src="/media/{{ video.imagem }}"></a></div>
+                                                        <div class="col-md-12">
+                                                            <p class="lead m-2">Classificação:
+                                                                {% if video.classificacao.classificacao == 0 %}
+                                                                    Livre
+                                                                {% else %}
+                                                                    {{ video.classificacao }} Anos
+                                                                {% endif %}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            {% endfor %}
                                         </div>
                                     </div>
-
-                                {% endfor %}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-{#                        {% if usuario.favorito.all %}#}
-{#                            {%  for video  in  usuario.favorito.all %}#}
-{#            <div class="py-5">#}
-{#                <div class="container">#}
-{#                    <div class="row">#}
-{##}
-{##}
-{#                       <div class="col-md-12">#}
-{#                            <div class="row">#}
-{#                                <div class="col-md-4">#}
-                                    {#                                <img class="img-fluid d-block w-100" src="/static/image/dragon-ball-z-banner1.jpg">#}
-{#                                    <img class="img-fluid d-block w-100" src="/media/{{ video.imagem }}">#}
-{#                                </div>#}
-{#                                <div class="col-md-8">#}
-{#                                    <div class="row">#}
-{#                                        <div class="col-md-12">#}
-{#                                            <a href="{% url 'video-detail' video.id %}"><h1#}
-{#                                                    class="">{{ video.titulo }}</h1></a>#}
-{#                                        </div>#}
-{#                                        <div class="col-md-12">#}
-{#                                            <p class="">#}
-                                                {#                                            {{ video.ator.all }}#}
-{#                                                {{ video.elenco.all|join:",  " }}</p>#}
-{#                                        </div>#}
-{#                                        <div class="col-md-12">#}
-{#                                            <p class="lead">{{ video.descricao }}</p>#}
-{#                                        </div>#}
-{#                                        <div class="col-md-12">#}
-{#                                            <p class="">Classificação: {% if video.classificacao.classificacao == 0 %}#}
-{#                                                Livre#}
-{#                                            {% else %}#}
-{#                                                {{ video.classificacao }} Anos#}
-{#                                            {% endif %}</p>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#                            {% endfor %}#}
-{#        {% endif %}#}
+                    {% endif %}
+                    <a href="{% url 'home' %}" class="btn btn-primary text-center">
+                        <span class="glyphicon glyphicon-home"></span>Voltar à página inicial
+                    </a>
+                    {#                        {% if usuario.favorito.all %}#}
+                    {#                            {%  for video  in  usuario.favorito.all %}#}
+                    {#            <div class="py-5">#}
+                    {#                <div class="container">#}
+                    {#                    <div class="row">#}
+                    {##}
+                    {##}
+                    {#                       <div class="col-md-12">#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-md-4">#}
+                    {#                                <img class="img-fluid d-block w-100" src="/static/image/dragon-ball-z-banner1.jpg">#}
+                    {#                                    <img class="img-fluid d-block w-100" src="/media/{{ video.imagem }}">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-md-8">#}
+                    {#                                    <div class="row">#}
+                    {#                                        <div class="col-md-12">#}
+                    {#                                            <a href="{% url 'video-detail' video.id %}"><h1#}
+                    {#                                                    class="">{{ video.titulo }}</h1></a>#}
+                    {#                                        </div>#}
+                    {#                                        <div class="col-md-12">#}
+                    {#                                            <p class="">#}
+                    {#                                            {{ video.ator.all }}#}
+                    {#                                                {{ video.elenco.all|join:",  " }}</p>#}
+                    {#                                        </div>#}
+                    {#                                        <div class="col-md-12">#}
+                    {#                                            <p class="lead">{{ video.descricao }}</p>#}
+                    {#                                        </div>#}
+                    {#                                        <div class="col-md-12">#}
+                    {#                                            <p class="">Classificação: {% if video.classificacao.classificacao == 0 %}#}
+                    {#                                                Livre#}
+                    {#                                            {% else %}#}
+                    {#                                                {{ video.classificacao }} Anos#}
+                    {#                                            {% endif %}</p>#}
+                    {#                                        </div>#}
+                    {#                                    </div>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                </div>#}
+                    {#            </div>#}
+                    {#                            {% endfor %}#}
+                    {#        {% endif %}#}
                 </div>
             </div>
         </div>

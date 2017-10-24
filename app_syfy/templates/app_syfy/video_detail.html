@@ -3,81 +3,19 @@
 {% block title %}Visualizar Vídeo{% endblock %}
 {% block main %}
 
-    {#        <div class="container">#}
-    {#            <div class="row">#}
-    {#                <div class="col-md-12 bg-inverse">#}
-    {#                    <div class="py-5 text-center bg-inverse">#}
-    {#                        <div class="container">#}
-    {#                            <div class="row">#}
-    {#                                <div class="col-md-12">#}
-    {##}
-    {#                                    <div class="row">#}
-    {#                                        <div class="col-md-12 bg-inverse">#}
-    {#                                            <ul class="nav nav-tabs">#}
-    {#                                                <li class="active"><a data-toggle="tab" href="#home">Video HTML5 </a>#}
-    {#                                                </li>#}
-    {#                                                <li><a data-toggle="tab" href="#menu1">Youtube </a></li>#}
-    {#                                            </ul>#}
-    {##}
-    {#                                            <div class="tab-content">#}
-    {##}
-    {#                                                <div id="home" class="tab-pane fade in active">#}
-    {#                                                 <h3>Player HTML5! {{ object.titulo }}</h3>#}
-    {#                                                    <div class="embed-responsive embed-responsive-4by3">#}
-    {#                                                        {% if object.arquivo %}#}
-    {#                                                            <video controls>#}
-    {#                                                                <source src="/media/{{ object.arquivo }}"#}
-    {#                                                                        type="video/mp4">#}
-    {#                                                              <source src="/media/{{ object.arquivoogv }}" type="video/ogv">#}
-    {##}
-    {#                                                            </video>#}
-    {#                                                        {% else %}#}
-    {##}
-    {#                                                            <h1>Player Indisponível!</h1>#}
-    {##}
-    {##}
-    {#                                                        {% endif %}#}
-    {#                                                    </div>#}
-    {#                                                </div>#}
-    {#                                                <div id="menu1" class="tab-pane fade">#}
-    {#                                                    <h3>Player Youtube! {{ object.titulo }}</h3>#}
-    {#                                                    <div class="embed-responsive embed-responsive-4by3">#}
-    {#                                                        {% if object.youtube %}#}
-    {#                                                            <iframe width="560" height="315" src="{{ object.youtube }}"#}
-    {#                                                                    frameborder="0" allowfullscreen>#}
-    {##}
-    {#                                                            </iframe>#}
-    {#                                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ object.youtube }}"#}
-    {#                                                                    frameborder="0" allowfullscreen>#}
-    {#                                                            </iframe>#}
-    {#                                                        {% else %}#}
-    {#                                                            <h1>Player Indisponível!</h1>#}
-    {##}
-    {#                                                        {% endif %}#}
-    {#                                                        {{ object.youtube }}#}
-    {#                                                                                                                <video controls>#}
-    {#                                                                                                                    <source src="/media/{{ object.youtube }}"#}
-    {#                                                                                                                            type="video/mp4">#}
-    {##}
-    {#                                                                                                                </video> #}
-    {#                                                                                                               <iframe width="560" height="315" src="https://www.youtube.com/embed/TKUluYL7Mcc" frameborder="0" allowfullscreen></iframe>#}
-    {#                                                    </div>#}
-    {#                                                                                                            </p>#}
-    {#                                                </div>#}
-    {#                                                                                                <div id="menu2" class="tab-pane fade">#}
-    {#                                                                                                    <h3>Menu 2</h3>#}
-    {#                                                                                                    <p>Some content in menu 2.</p>#}
-    {#                                                                                                </div>#}
-    {#                                            </div>#}
-    {##}
-    {#                                        </div>#}
-    {#                                    </div>#}
-    {#                                </div>#}
-    {#                            </div>#}
-    {#                        </div>#}
-    {##}
-    {#                    </div>#}
     <div class="container">
+
+        {% if messages %}
+            <div class="row">
+                {% for message in messages %}
+                    <div{% if message.tags %} class="alert alert-success" id="mensagem" {% endif %}>
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                        <strong>{{ message }}!</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col-md-12 bg-inverse">
                 <div class="py-5 text-center bg-inverse">

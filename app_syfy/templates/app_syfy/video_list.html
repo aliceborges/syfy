@@ -3,52 +3,57 @@
 {% block title %}Home{% endblock %}
 {% block main %}
 
-  <div class="py-5">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="mx-5 display-6 bg-faded">{% if pesquisa %}Você pesquisou por: {{ pesquisa }} {% else %}{{ genero }}{% endif %}</h2>
+    <div class="py-5">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mx-5 display-6 bg-faded">{% if pesquisa %}Você pesquisou por: {{ pesquisa }} {% else %}{{ genero }}{% endif %}</h2>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="py-1  section">
-    <div class="container">
-      <div class="row">
-          {% for video in object_list %}
+    <div class="py-1  section">
+        <div class="container">
+            <div class="row">
+                {% if object_list %}
+                    {% for video in object_list %}
 
-        <div class="col-md-3">
-          <img class="img-fluid d-block" src="/media/{{ video.imagem }}">
-            <a href="{% url 'video-detail' video.id %}" >{{ video.titulo }}</a>
-        </div>
+                        <div class="col-md-3">
+                            <img class="img-fluid d-block" src="/media/{{ video.imagem }}">
+                            <a href="{% url 'video-detail' video.id %}" >{{ video.titulo }}</a>
+                        </div>
 
-          {% endfor %}
-
-      </div>
-     {% if is_paginated %}<nav aria-label="Page navigation">
-  <ul class="pagination">
-
-                        {% if page_obj.has_previous %}
-                           <li class="page-item">
-      <a class="page-link"  href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">  <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">anterior</span> </a>
-                        {% endif %}
-                        <li class="page-item page-link" >
-                                P&aacute;gina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-                        </li>
-                        {% if page_obj.has_next %}
-                         <li class="page-item">    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next" > <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">pr&oacute;xima</span></a>
-                        {% endif %} </li>
-                        {#  </div>#}
-                    </div> </ul>
-</nav>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-info" id="mensagem">
+                        <strong>Não existem vídeos disponíveis no momento.</strong>
+                    </div>
                 {% endif %}
+            </div>
+            {% if is_paginated %}<nav aria-label="Page navigation">
+                <ul class="pagination">
+
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                        <a class="page-link"  href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">  <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">anterior</span> </a>
+                    {% endif %}
+                    <li class="page-item page-link" >
+                        P&aacute;gina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    </li>
+                    {% if page_obj.has_next %}
+                        <li class="page-item">    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next" > <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">pr&oacute;xima</span></a>
+                    {% endif %} </li>
+                    {#  </div>#}
+                </div> </ul>
+                </nav>
+            {% endif %}
     </div>
 
-  </div>
+    </div>
 
-  <div class="py-3"></div>
+    <div class="py-3"></div>
 
 
 
