@@ -11,7 +11,8 @@ from django.test import TestCase
 from django.test import Client
 from django.core.urlresolvers import reverse
 
-class TesteHome(TestCase):
+
+class TesteUrls(TestCase):
     def setUp(self):
 
         self.client = Client()
@@ -28,3 +29,4 @@ class TesteHome(TestCase):
 
     def testObjectCreate(self):
         self.assertEquals(self.status_url('home'), 200)
+        # self.assertEquals(self.status_url('usuario-detail'), 200)
