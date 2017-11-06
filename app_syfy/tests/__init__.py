@@ -1,2 +1,2 @@
-from usuario import *
-from home import *
+# from usuario import *
+# from home import *

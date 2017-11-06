@@ -29,4 +29,5 @@ class TesteUrls(TestCase):
 
     def testObjectCreate(self):
         self.assertEquals(self.status_url('home'), 200)
+        self.assertEquals(self.status_url('video-list'), 200)
         # self.assertEquals(self.status_url('usuario-detail'), 200)
