@@ -14,9 +14,6 @@ from django.core.urlresolvers import reverse
 class TesteHome(TestCase):
     def setUp(self):
 
-        # self.video = Video.objects.get_or_create(
-        #     titulo='DC-flash',duracao='10:00'
-        # )
         self.client = Client()
 
 

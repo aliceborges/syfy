@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 
 class TesteVideo(TestCase):
     def setUp(self):
+        #criar registros no banco temporario
         classificacao = Classificacao(classificacao=18)
         classificacao.save()
 
@@ -21,7 +22,7 @@ class TesteVideo(TestCase):
 
         self.genero1 = Genero(nome='syfy1')
         self.genero1.save()
-        # classificacao.save()
+
 
         self.video = Video(
             titulo='DC-flash',duracao='10:00', classificacao=classificacao
@@ -40,15 +41,8 @@ class TesteVideo(TestCase):
         self.client = Client()
 
 
-
-
-
-
-    # def status_url(self):
-    #     response = self.client.get(reverse('home'))
-    #     return response.status_code
-
     def contains_video(self,video,genero):
+
         response=self.client.get(reverse('video-genero-list', kwargs={'pk': genero}))
         object_list=response.context[-1]['object_list']
         return video in object_list
