@@ -12,7 +12,7 @@ from django.db.models import Q
 from django.contrib.messages.views import SuccessMessageMixin
 
 class VideoListView(ListView):
-    paginate_by = 10
+    paginate_by = 15
     queryset = Video.objects.all()
     # def get_queryset(self):
     #     print(self.request.user.id)

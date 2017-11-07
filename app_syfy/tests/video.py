@@ -40,6 +40,9 @@ class TesteVideo(TestCase):
 
         self.client = Client()
 
+    def status_url(self,url,pk):
+        response = self.client.get(reverse(url, kwargs={'pk': pk}))
+        return response.status_code
 
     def contains_video(self,video,genero):
 
@@ -71,3 +74,6 @@ class TesteVideo(TestCase):
 
         #testar a quantagem de videos pela views
         self.assertEquals(self.count_list_video(), 2)
+
+        #teste da url individual do primeiro video
+        self.assertEquals(self.status_url('video-detail',1), 200)
